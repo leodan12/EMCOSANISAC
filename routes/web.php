@@ -157,7 +157,7 @@ Route::get('/deletedetalleventa/{id}', [VentaController::class, 'destroydetallev
 Route::get('/pdf/generar',[PdfController::class,'createPDF']);
 Route::get('/generarboletaventa/{id}',[PdfController::class,'boletaventa']);
 
-
+//mas rutas
 
 
 
