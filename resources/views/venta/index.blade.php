@@ -17,18 +17,18 @@
     <div class="col col-12">
         <h5>Listado de Ventas</h5>
         @if (session()->has('respuesta')) {{-- comprueba si existe el valor en sesión --}}
-    <script>
-       
-       mensaje("{{session('respuesta')}}");
-   </script>
+        <script>
+            mensaje("{{session('respuesta')}}");
+        </script>
 
-    {!! session()->forget('respuesta') !!} {{-- borrar el error de sesión --}}
-    @endif
+        {!! session()->forget('respuesta') !!} {{-- borrar el error de sesión --}}
+        @endif
     </div>
 </div>
-<div class="">
+<div  >
     <div class="row">
-        <div class="d-flex justify-content-end mb-5" data-kt-docs-table-toolbar="base">
+        
+        <div class="d-flex justify-content-end mb-2" data-kt-docs-table-toolbar="base">
             <a href="{{url('venta/create')}}" class="btn btn-primary">
                 <span class="svg-icon svg-icon-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
@@ -37,11 +37,17 @@
                 </span>
                 Crear
             </a>
-
         </div>
-        <!-- 
-        <button type="button" class="btn btn-primary"   data-bs-toggle="modal" data-bs-target="#mimodal" data-bs-whatever="@fat">Open modal for @fat</button>
--->
+        
+        <div class=" col col-sm-4 col-lg-4  "> 
+        <select class="form-select" aria-label="Default select example" name="selectestado" id="selectestado">
+            <option selected disabled>Filtrar por Estado</option>
+            <option value="PEDIDO">PEDIDO</option>
+            <option value="PAGADO">PAGADO</option>
+            <option value="ENTREGADO">ENTREGADO</option>
+        </select>
+        </div>
+        <br><br><br>
 
         <div class="table-responsive">
             <div class="d-flex flex-stack">
@@ -121,30 +127,31 @@
                                     <label for="usuario" class="col-form-label">Usuario:</label>
                                     <input type="text" class="form-control" id="verUsuario" readonly>
                                 </div>
-                                 
+
                             </div>
                         </form>
                         <div class="table-responsive">
-                        <table class="table table-row-bordered gy-5 gs-5" id="detallesventa">
-                            <thead class="fw-bold text-primary">
-                                <tr>
-                                    <th>Producto</th>
-                                    <th>Cantidad</th>
-                                    <th>Precio Unitario</th>
-                                    <th>Descuento</th>
-                                    <th>Precio Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr></tr>
-                            </tbody>
-                        </table>
-                    </div>
+                            <table class="table table-row-bordered gy-5 gs-5" id="detallesventa">
+                                <thead class="fw-bold text-primary">
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio Unitario</th>
+                                        <th>Descuento</th>
+                                        <th>Precio Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr></tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-success" id="generarboleta">Generar Boleta</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
                     </div>
+
                 </div>
             </div>
         </div>
@@ -166,6 +173,7 @@
 @include('helpers.data-managment')
 
 <script>
+    idventa = 0;
     const mimodal = document.getElementById('mimodal')
     mimodal.addEventListener('show.bs.modal', event => {
 
@@ -175,31 +183,32 @@
         $.get(urlventa + '/' + id, function(data) {
             //console.log(data);
             const modalTitle = mimodal.querySelector('.modal-title')
-            modalTitle.textContent = `Ver Registro ${id}` 
-            document.getElementById("verFecha").value=data[0].fecha;  
-            document.getElementById("verCostoventa").value=data[0].costoventa;  
-            document.getElementById("verDescripcion").value=data[0].descripcion;  
-            document.getElementById("verEstadoventa").value=data[0].estadoventa;  
-            document.getElementById("verCliente").value=data[0].nombres+' '+data[0].apellidos;
-            
-            document.getElementById("verDocumento").value=data[0].tipodocumento+': '+data[0].numerodocumento;    
-            document.getElementById("verUsuario").value=data[0].usuario;  
-             
+            modalTitle.textContent = `Ver Registro ${id}`;
+            idventa = id;
+            document.getElementById("verFecha").value = data[0].fecha;
+            document.getElementById("verCostoventa").value = data[0].costoventa;
+            document.getElementById("verDescripcion").value = data[0].descripcion;
+            document.getElementById("verEstadoventa").value = data[0].estadoventa;
+            document.getElementById("verCliente").value = data[0].nombres + ' ' + data[0].apellidos;
+
+            document.getElementById("verDocumento").value = data[0].tipodocumento + ': ' + data[0].numerodocumento;
+            document.getElementById("verUsuario").value = data[0].usuario;
+
             var tabla = document.getElementById(detallesventa);
             $('#detallesventa tbody tr').slice().remove();
-            for(var i =0 ; i<data.length;i++){
-                filaDetalle ='<tr id="fila' + i + 
-                '"><td><input  type="hidden" name="Linventario[]" value="' + data[i].producto  + '"required>'+ data[i].producto+
-                
-                '</td><td><input  type="hidden" name="Lcantidad[]" value="' + data[i].cantidad + '"required>'+ data[i].cantidad+ 
-                '</td><td><input  type="hidden" name="Lpreciounidad[]" value="' + data[i].preciounidad + '"required>'+ data[i].preciounidad+ 
-                '</td><td><input  type="hidden" name="Ldescuento[]" value="' + data[i].descuento + '"required>'+ data[i].descuento+ 
-                '</td><td><input  type="hidden" name="Lpreciototal[]" value="' + data[i].preciototal + '"required>'+ data[i].preciototal+ 
-                '</td></tr>';
-               
+            for (var i = 0; i < data.length; i++) {
+                filaDetalle = '<tr id="fila' + i +
+                    '"><td><input  type="hidden" name="Linventario[]" value="' + data[i].producto + '"required>' + data[i].producto +
+
+                    '</td><td><input  type="hidden" name="Lcantidad[]" value="' + data[i].cantidad + '"required>' + data[i].cantidad +
+                    '</td><td><input  type="hidden" name="Lpreciounidad[]" value="' + data[i].preciounidad + '"required>' + data[i].preciounidad +
+                    '</td><td><input  type="hidden" name="Ldescuento[]" value="' + data[i].descuento + '"required>' + data[i].descuento +
+                    '</td><td><input  type="hidden" name="Lpreciototal[]" value="' + data[i].preciototal + '"required>' + data[i].preciototal +
+                    '</td></tr>';
+
                 $("#detallesventa>tbody").append(filaDetalle);
             }
-                 
+
         });
 
     })
@@ -209,23 +218,33 @@
     var urlventas = "{{ url('venta') }}";
 
 
-    var table = defineTable($('#listado'), [], [0, 1, 2, 3, 4, 5, 6, 7,8,9], 'ventas', function() {}, true, true, false);
+    var table = defineTable($('#listado'), [], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 'ventas', function() {}, true, true, false);
 
     $('#buscador').keyup(function(e) {
         table.search(e.target.value).draw();
     });
-    var viewbtn = true ;
-    var editbtn = true ;
-    var deletetn = true ;
+    var viewbtn = true;
+    var editbtn = true;
+    var deletetn = true;
 
     @php
-	$rol = Auth::user()->rol_id;
-	@endphp
+    $rol = Auth::user()->rol_id;
+    @endphp
 
-    @if($rol != 1  )
-        deletetn = false ;
+    @if($rol != 1)
+    deletetn = false;
     @endif
     listarOnTable(table, ventas, 0, [], viewbtn, editbtn, deletetn, urlventas, false, []);
+
+    $('#generarboleta').click(function() {
+
+        window.open( '/generarboletaventa/' + idventa );
+
+    });
+
+    $("select[name=selectestado]").change(function(e){
+        table.search(e.target.value).draw();
+        });
 </script>
 
 

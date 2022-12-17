@@ -268,6 +268,7 @@
     }
     //PARA ELIMINAR UN DATO DE LA TABLA
     function eliminarFila(idBD, ind) {
+        
         Swal.fire({
             title: "¿Seguro que desea eliminar este registro?",
             icon: "warning",
@@ -277,7 +278,7 @@
         }).then(function(result) {
             if (result.value) {
                 var estado = document.getElementById("estadoventa").value;
-                if (estado == 'PEDIDO') {
+                if (estado == 'PEDIDO'  ) {
                     $.get('/deletedetalleventa/' + idBD, function(data) {
                         $('#fila' + ind).remove();
                     });

@@ -37,7 +37,7 @@
                             <option value="ENTREGADO"   >ENTREGADO</option>
                         </select>
                          </div>
-                    <div class="col-sm-6 col-lg-3 mb-5">
+                    <div class="col-sm-6 col-lg-6 mb-5">
                         <label for="cliente" class="form-label" required>Cliente</label>
                         <select class="required form-select" name="cliente" id="cliente" >
                             <option selected disabled>Seleccione un cliente</option>
@@ -66,15 +66,15 @@
                     </div>
                     <div class="col-sm-6 col-lg-3 mb-5">
                         <label for="precioUnidad" class="form-label" required>Precio Unitario</label>
-                        <input type="number"  step=0.1 placeholder=" Ingrese Precio Unidad"  name="precioUnidad" id="precioUnidad" class="form-control"     >
+                        <input type="number"  step=0.01 placeholder=" Ingrese Precio Unidad"  name="precioUnidad" id="precioUnidad" class="form-control"     >
                     </div>
                     <div class="col-sm-6 col-lg-3 mb-5">
                         <label for="descuento" class="form-label" required>Descuento</label>
-                        <input type="number" step=0.1  placeholder=" Ingrese Descuento"  name="descuento" id="descuento" class="form-control"     >
+                        <input type="number" step=0.01  placeholder=" Ingrese Descuento"  name="descuento" id="descuento" class="form-control"     >
                     </div>
                     <div class="col-sm-6 col-lg-3 mb-5">
                         <label for="precioTotal" class="form-label" required>Precio Total</label>
-                        <input type="number" step=0.1  placeholder=" Ingrese Precio Total"  name="precioTotal" id="precioTotal" class="form-control"  readonly   >
+                        <input type="number" step=0.01  placeholder=" Ingrese Precio Total"  name="precioTotal" id="precioTotal" class="form-control"  readonly   >
                     </div>
                     
                <div class="d-flex justify-content-end ">

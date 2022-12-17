@@ -28,7 +28,7 @@
 </div>
 <div class="">
     <div class="row">
-        <div class="d-flex justify-content-end mb-5" data-kt-docs-table-toolbar="base">
+        <div class="d-flex justify-content-end mb-2" data-kt-docs-table-toolbar="base">
             <a href="{{url('compra/create')}}" class="btn btn-primary">
                 <span class="svg-icon svg-icon-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
@@ -39,10 +39,17 @@
             </a>
 
         </div>
-        <!-- 
-        <button type="button" class="btn btn-primary"   data-bs-toggle="modal" data-bs-target="#mimodal" data-bs-whatever="@fat">Open modal for @fat</button>
--->
-
+        <div class=" col col-sm-4 col-lg-4  "> 
+         
+        <select class="form-select" aria-label="Default select example" name="selectestado" id="selectestado">
+            <option selected disabled>Filtrar por Estado</option>
+            <option value="PEDIDO">PEDIDO</option>
+            <option value="PAGADO">PAGADO</option>
+            <option value="RECIBIDO">RECIBIDO</option>
+        </select>
+        </div>
+        <br><br>
+         
         <div class="table-responsive">
             <div class="d-flex flex-stack">
                 <div class="d-flex btn-excel-datatable"></div>
@@ -220,6 +227,10 @@
     listarOnTable(table, compras, 0, [], viewbtn, editbtn, deletetn, urlcompras, false, []);
 
   //  listarOnTable(table, compras, 0, [], true, true, true, urlcompras, false, []);
+  $("select[name=selectestado]").change(function(e){
+        table.search(e.target.value).draw();
+        });
+
 </script>
 
 
