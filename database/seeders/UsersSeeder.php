@@ -44,8 +44,17 @@ class UsersSeeder extends Seeder
             'estado' => 1,
           ]);
           DB::table('users')->insert([
-            'name' => 'carlos dias',
+            'name' => 'carlos diaz',
             'email' => 'carlosdiaz@gmail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$vZkZ2HK8m6BBXPjntYhDp.4UdUIIX7D6j2qoAAL8J4kbI1MVATexS', // password
+            'remember_token' => Str::random(10),
+            'rol_id' => 4,
+            'estado' => 1,
+          ]);
+          DB::table('users')->insert([
+            'name' => 'luiz perez',
+            'email' => 'luisperez@gmail.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$vZkZ2HK8m6BBXPjntYhDp.4UdUIIX7D6j2qoAAL8J4kbI1MVATexS', // password
             'remember_token' => Str::random(10),
