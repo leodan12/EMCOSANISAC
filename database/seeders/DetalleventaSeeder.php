@@ -30,7 +30,7 @@ class DetalleventaSeeder extends Seeder
             'preciounidad' => 100,
             'preciototal' => 5000,
             'inventario_id' => 2, 
-            'venta_id' => 1, 
+            'venta_id' => 2, 
             'estado' => 1,
           ]);
           DB::table('detalleventas')->insert([
