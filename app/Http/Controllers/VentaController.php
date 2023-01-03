@@ -47,7 +47,7 @@ class VentaController extends Controller
         ->select(  'i.id as idinventario','p.producto')
         ->where('p.estado','=','1')
         ->where('i.estado','=','1')->get() ;
-    return $productos;
+     
     $clientes = Cliente::all();
     return view("venta/create",['clientes'=>$clientes,'productos'=>$productos]);
    }
