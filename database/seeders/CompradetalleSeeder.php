@@ -75,7 +75,43 @@ class CompradetalleSeeder extends Seeder
             'preciounidad' => 5,
             'preciototal' => 25,
             'inventario_id' => 2, 
-            'compra_id' => 4, 
+            'compra_id' => 6, 
+            'estado' => 1,
+          ]);
+          DB::table('detalecompras')->insert([
+            'cantidad' => 4,
+            'unidadmedida' => 'unidades',
+            'preciounidad' => 5,
+            'preciototal' => 25,
+            'inventario_id' => 2, 
+            'compra_id' => 8, 
+            'estado' => 1,
+          ]);
+          DB::table('detalecompras')->insert([
+            'cantidad' => 3,
+            'unidadmedida' => 'unidades',
+            'preciounidad' => 5,
+            'preciototal' => 25,
+            'inventario_id' => 2, 
+            'compra_id' => 7, 
+            'estado' => 1,
+          ]);
+          DB::table('detalecompras')->insert([
+            'cantidad' => 4,
+            'unidadmedida' => 'unidades',
+            'preciounidad' => 5,
+            'preciototal' => 25,
+            'inventario_id' => 2, 
+            'compra_id' => 6, 
+            'estado' => 1,
+          ]);
+          DB::table('detalecompras')->insert([
+            'cantidad' => 5,
+            'unidadmedida' => 'unidades',
+            'preciounidad' => 5,
+            'preciototal' => 25,
+            'inventario_id' => 2, 
+            'compra_id' => 5, 
             'estado' => 1,
           ]);
     }

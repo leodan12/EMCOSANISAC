@@ -16,7 +16,7 @@ class VentaSeeder extends Seeder
     public function run()
     { 
         DB::table('ventas')->insert([
-            'fecha' => '2022-10-12',
+            'fecha' => '2022-12-24',
             'descripcion' => 'sin descripcion',
             'costoventa' => 5000,
             'estadoventa' => 'ENTREGADO',
@@ -25,7 +25,7 @@ class VentaSeeder extends Seeder
             'estado' => 1,
           ]);
           DB::table('ventas')->insert([
-            'fecha' => '2022-11-12',
+            'fecha' => '2022-11-28',
             'descripcion' => 'sin descripcion',
             'costoventa' => 500,
             'estadoventa' => 'PEDIDO',
@@ -34,7 +34,7 @@ class VentaSeeder extends Seeder
             'estado' => 1,
           ]);
           DB::table('ventas')->insert([
-            'fecha' => '2022-10-09',
+            'fecha' => '2023-01-05',
             'descripcion' => 'sin descripcion',
             'costoventa' => 800,
             'estadoventa' => 'ENTREGADO',
@@ -43,7 +43,7 @@ class VentaSeeder extends Seeder
             'estado' => 1,
           ]);
           DB::table('ventas')->insert([
-            'fecha' => '2022-06-08',
+            'fecha' => '2020-01-08',
             'descripcion' => 'sin descripcion',
             'costoventa' => 1000,
             'estadoventa' => 'PAGADO',
@@ -52,7 +52,34 @@ class VentaSeeder extends Seeder
             'estado' => 1,
           ]);
           DB::table('ventas')->insert([
-            'fecha' => '2022-10-10',
+            'fecha' => '2023-01-09',
+            'descripcion' => 'sin descripcion',
+            'costoventa' => 1500,
+            'estadoventa' => 'PEDIDO',
+            'cliente_id' => 1, 
+            'usuario_id' => '5', 
+            'estado' => 1,
+          ]);
+          DB::table('ventas')->insert([
+            'fecha' => '2023-01-02',
+            'descripcion' => 'sin descripcion',
+            'costoventa' => 1500,
+            'estadoventa' => 'PEDIDO',
+            'cliente_id' => 1, 
+            'usuario_id' => '5', 
+            'estado' => 1,
+          ]);
+          DB::table('ventas')->insert([
+            'fecha' => '2023-01-03',
+            'descripcion' => 'sin descripcion',
+            'costoventa' => 1500,
+            'estadoventa' => 'PEDIDO',
+            'cliente_id' => 1, 
+            'usuario_id' => '5', 
+            'estado' => 1,
+          ]);
+          DB::table('ventas')->insert([
+            'fecha' => '2023-01-06',
             'descripcion' => 'sin descripcion',
             'costoventa' => 1500,
             'estadoventa' => 'PEDIDO',

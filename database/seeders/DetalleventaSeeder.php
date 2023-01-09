@@ -75,7 +75,34 @@ class DetalleventaSeeder extends Seeder
             'preciounidad' => 5,
             'preciototal' => 25,
             'inventario_id' => 2, 
-            'venta_id' => 4, 
+            'venta_id' => 5, 
+            'estado' => 1,
+          ]);
+          DB::table('detalleventas')->insert([
+            'cantidad' => 5,
+            'descuento' => 0,
+            'preciounidad' => 5,
+            'preciototal' => 25,
+            'inventario_id' => 2, 
+            'venta_id' => 6, 
+            'estado' => 1,
+          ]);
+          DB::table('detalleventas')->insert([
+            'cantidad' => 5,
+            'descuento' => 0,
+            'preciounidad' => 5,
+            'preciototal' => 25,
+            'inventario_id' => 2, 
+            'venta_id' => 7, 
+            'estado' => 1,
+          ]);
+          DB::table('detalleventas')->insert([
+            'cantidad' => 5,
+            'descuento' => 0,
+            'preciounidad' => 5,
+            'preciototal' => 25,
+            'inventario_id' => 2, 
+            'venta_id' => 8, 
             'estado' => 1,
           ]);
     }

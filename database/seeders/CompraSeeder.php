@@ -16,7 +16,7 @@ class CompraSeeder extends Seeder
     public function run()
     { 
         DB::table('compras')->insert([
-            'fecha' => '2022-11-12',
+            'fecha' => '2022-12-12',
             'descripcion' => 'sin descripcion',
             'costocompra' => 500,
             'estadocompra' => 'PEDIDO',
@@ -25,7 +25,7 @@ class CompraSeeder extends Seeder
             'estado' => 1,
           ]);
           DB::table('compras')->insert([
-            'fecha' => '2022-10-09',
+            'fecha' => '2022-11-25',
             'descripcion' => 'sin descripcion',
             'costocompra' => 800,
             'estadocompra' => 'RECIBIDO',
@@ -34,7 +34,7 @@ class CompraSeeder extends Seeder
             'estado' => 1,
           ]);
           DB::table('compras')->insert([
-            'fecha' => '2022-06-08',
+            'fecha' => '2023-01-08',
             'descripcion' => 'sin descripcion',
             'costocompra' => 1000,
             'estadocompra' => 'PAGADO',
@@ -43,7 +43,7 @@ class CompraSeeder extends Seeder
             'estado' => 1,
           ]);
           DB::table('compras')->insert([
-            'fecha' => '2022-10-10',
+            'fecha' => '2023-01-09',
             'descripcion' => 'sin descripcion',
             'costocompra' => 1500,
             'estadocompra' => 'PEDIDO',
@@ -52,9 +52,36 @@ class CompraSeeder extends Seeder
             'estado' => 1,
           ]);
           DB::table('compras')->insert([
-            'fecha' => '2022-10-12',
+            'fecha' => '2023-01-02',
             'descripcion' => 'sin descripcion',
             'costocompra' => 5000,
+            'estadocompra' => 'RECIBIDO',
+            'proveedor_id' => 1, 
+            'usuario_id' => '5', 
+            'estado' => 1,
+          ]);
+          DB::table('compras')->insert([
+            'fecha' => '2023-01-08',
+            'descripcion' => 'sin descripcion',
+            'costocompra' => 1200,
+            'estadocompra' => 'RECIBIDO',
+            'proveedor_id' => 1, 
+            'usuario_id' => '5', 
+            'estado' => 1,
+          ]);
+          DB::table('compras')->insert([
+            'fecha' => '2023-01-05',
+            'descripcion' => 'sin descripcion',
+            'costocompra' => 800,
+            'estadocompra' => 'RECIBIDO',
+            'proveedor_id' => 1, 
+            'usuario_id' => '5', 
+            'estado' => 1,
+          ]);
+          DB::table('compras')->insert([
+            'fecha' => '2023-01-04',
+            'descripcion' => 'sin descripcion',
+            'costocompra' => 700,
             'estadocompra' => 'RECIBIDO',
             'proveedor_id' => 1, 
             'usuario_id' => '5', 

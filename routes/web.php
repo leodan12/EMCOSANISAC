@@ -13,6 +13,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\VentaController;
 
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\ReporteController;
 
 /*
 Route::post('/login', [UserController::class, 'login']);
@@ -157,7 +158,16 @@ Route::get('/deletedetalleventa/{id}', [VentaController::class, 'destroydetallev
 Route::get('/pdf/generar',[PdfController::class,'createPDF']);
 Route::get('/generarboletaventa/{id}',[PdfController::class,'boletaventa']);
 
-//mas rutas
+//rutas para reportes de ventas
 
+Route::get('/ventas/reportes',[ReporteController::class,'index']);
+Route::get('/ingresos',[ReporteController::class,'ingresos']);
+Route::get('/nuestrasventas/{fechaI}/{fechaF}',[ReporteController::class,'nuestrasVentas']);
+
+//rutas para reportes de compras
+ 
+Route::get('/compras/reportes',[ReporteController::class,'index2']);
+Route::get('/egresos',[ReporteController::class,'egresos']);
+Route::get('/nuestrascompras/{fechaI}/{fechaF}',[ReporteController::class,'nuestrasCompras']);
 
 
