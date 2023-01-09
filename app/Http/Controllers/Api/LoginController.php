@@ -88,8 +88,8 @@ class LoginController extends Controller
 
             //se devuelve una respuesta JSON con el token generado y el tipo de token
             return response()->json([
-                'access_token' => $token,
-                'token_type' => 'Bearer'
+                'token' => $token,
+                'message' => 'Success'
             ], 200);
         } else {
             return response()->json([
