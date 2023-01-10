@@ -324,9 +324,9 @@
 						<!--end::Aside mobile toggle-->
 						<!--begin::Mobile logo-->
 						<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-							<a href="{{url('/')}}" class="d-lg-none">
+							<a href="{{url('/welcome')}}" class="d-lg-none">
 
-								<img alt="Logo" src="{{ asset('media/img/emcosani.jpg') }}" class="h-50px logo">
+								<img alt="Logo" src="{{ asset('media/img/emcosani.jpg') }}"  width="100%">
 							</a>
 						</div>
 						<!--end::Mobile logo-->

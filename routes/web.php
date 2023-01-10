@@ -163,11 +163,14 @@ Route::get('/generarboletaventa/{id}',[PdfController::class,'boletaventa']);
 Route::get('/ventas/reportes',[ReporteController::class,'indexventas']);
 Route::get('/ingresos',[ReporteController::class,'ingresos']);
 Route::get('/nuestrasventas/{fechaI}/{fechaF}',[ReporteController::class,'nuestrasVentas']);
+Route::get('/ventasenfecha/{fechaI}/{fechaF}',[ReporteController::class,'ventasenFecha']);
+
 
 //rutas para reportes de compras
 Route::get('/compras/reportes',[ReporteController::class,'indexcompras']);
 Route::get('/egresos',[ReporteController::class,'egresos']);
 Route::get('/nuestrascompras/{fechaI}/{fechaF}',[ReporteController::class,'nuestrasCompras']);
+Route::get('/comprasenfecha/{fechaI}/{fechaF}',[ReporteController::class,'comprasenFecha']);
 
 //rutas para reportes de compras
 Route::get('/productos/reportes',[ReporteController::class,'indexproductos']);

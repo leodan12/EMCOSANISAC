@@ -23,9 +23,36 @@ class ReporteController extends Controller
             ->whereBetween('v.fecha', [$fecha_mes_anterior, $fecha_actual])
             ->get();
 
+        $ventastabla = DB::table('ventas as v')
+            ->join('detalleventas as dv', 'dv.venta_id', '=', 'v.id')
+            ->join('inventarios as i', 'dv.inventario_id', '=', 'i.id')
+            ->join('productos as p', 'i.producto_id', '=', 'p.id')
+            ->join('categorias as c', 'p.categoria_id', '=', 'c.id')
+            ->join('users as u', 'v.usuario_id', '=', 'u.id')
+            ->select('dv.id as id', 'p.producto', 'p.marca', 'dv.cantidad', 'dv.preciounidad', 'dv.descuento', 'dv.preciototal', 'v.fecha' )
+            ->whereBetween('v.fecha', [$fecha_mes_anterior, $fecha_actual])
+            ->orderBy('v.fecha')
+            ->where('v.estado', '=', '1')->get();
 
-        return view('reporte.ventas', ['ventas' => $ventas]);
+        //return $ventastabla;
+        return view('reporte.ventas', ['ventas' => $ventas,'ventastabla' => $ventastabla]);
     }
+
+    public function ventasenFecha($fechaI, $fechaF)
+   {
+    $ventas=DB::table('ventas as v')
+    ->join('detalleventas as dv', 'dv.venta_id', '=', 'v.id')
+    ->join('inventarios as i', 'dv.inventario_id', '=', 'i.id')
+    ->join('productos as p', 'i.producto_id', '=', 'p.id')
+    ->join('categorias as c', 'p.categoria_id', '=', 'c.id') 
+    ->select('dv.id as id', 'p.producto', 'p.marca', 'dv.cantidad', 'dv.preciounidad', 'dv.descuento', 'dv.preciototal', 'v.fecha' )
+    ->whereBetween('v.fecha', [$fechaI, $fechaF])
+    ->orderBy('v.fecha','asc')
+    ->where('v.estado', '=', '1')->get();
+      
+    return $ventas;
+   }
+
     public function indexcompras()
     {
         $fecha_actual = date("Y-m-d");
@@ -36,8 +63,34 @@ class ReporteController extends Controller
             ->groupBy('c.fecha')
             ->whereBetween('c.fecha', [$fecha_mes_anterior, $fecha_actual])
             ->get();
-        return view('reporte.compras', ['compras' => $compras]);
+
+        $comprastabla=DB::table('compras as c')
+            ->join('detalecompras as dc', 'dc.compra_id', '=', 'c.id')
+            ->join('inventarios as i', 'dc.inventario_id', '=', 'i.id')
+            ->join('productos as p', 'i.producto_id', '=', 'p.id')
+            ->join('categorias as cat', 'p.categoria_id', '=', 'cat.id') 
+            ->select('dc.id as id', 'p.producto', 'p.marca', 'dc.cantidad', 'dc.preciounidad', 'dc.unidadmedida', 'dc.preciototal', 'c.fecha' )
+            ->whereBetween('c.fecha', [$fecha_mes_anterior, $fecha_actual])
+            ->orderBy('c.fecha','asc')
+            ->where('c.estado', '=', '1')->get();
+
+        return view('reporte.compras', ['compras' => $compras,'comprastabla' => $comprastabla]);
     }
+
+    public function comprasenFecha($fechaI, $fechaF)
+   {
+    $compras=DB::table('compras as c')
+    ->join('detalecompras as dc', 'dc.compra_id', '=', 'c.id')
+    ->join('inventarios as i', 'dc.inventario_id', '=', 'i.id')
+    ->join('productos as p', 'i.producto_id', '=', 'p.id')
+    ->join('categorias as cat', 'p.categoria_id', '=', 'cat.id') 
+    ->select('dc.id as id', 'p.producto', 'p.marca', 'dc.cantidad', 'dc.preciounidad', 'dc.unidadmedida', 'dc.preciototal', 'c.fecha' )
+    ->whereBetween('c.fecha', [$fechaI, $fechaF])
+    ->orderBy('c.fecha','asc')
+    ->where('c.estado', '=', '1')->get();
+      
+    return $compras;
+   }
 
     public function indexproductos()
     {
@@ -166,7 +219,7 @@ class ReporteController extends Controller
     {
         $stockmenor30 = DB::table('productos as p')
             ->join('inventarios as i', 'i.producto_id', '=', 'p.id')
-            ->select( 'i.stock  as stock' ,'p.producto as producto') 
+            ->select('i.stock  as stock', 'p.producto as producto')
             ->where('i.stock', '<', $limite)
             //->take(10)
             ->orderBy('stock', 'asc')
@@ -178,7 +231,7 @@ class ReporteController extends Controller
     {
         $stockmayor30 = DB::table('productos as p')
             ->join('inventarios as i', 'i.producto_id', '=', 'p.id')
-            ->select( 'i.stock  as stock' ,'p.producto as producto') 
+            ->select('i.stock  as stock', 'p.producto as producto')
             ->where('i.stock', '>=', $limite)
             //->take(10)
             ->orderBy('stock', 'asc')
