@@ -160,14 +160,25 @@ Route::get('/generarboletaventa/{id}',[PdfController::class,'boletaventa']);
 
 //rutas para reportes de ventas
 
-Route::get('/ventas/reportes',[ReporteController::class,'index']);
+Route::get('/ventas/reportes',[ReporteController::class,'indexventas']);
 Route::get('/ingresos',[ReporteController::class,'ingresos']);
 Route::get('/nuestrasventas/{fechaI}/{fechaF}',[ReporteController::class,'nuestrasVentas']);
 
 //rutas para reportes de compras
- 
-Route::get('/compras/reportes',[ReporteController::class,'index2']);
+Route::get('/compras/reportes',[ReporteController::class,'indexcompras']);
 Route::get('/egresos',[ReporteController::class,'egresos']);
 Route::get('/nuestrascompras/{fechaI}/{fechaF}',[ReporteController::class,'nuestrasCompras']);
+
+//rutas para reportes de compras
+Route::get('/productos/reportes',[ReporteController::class,'indexproductos']);
+Route::get('/productos',[ReporteController::class,'productos']);
+Route::get('/nuestrosproductosmas/{fechaI}/{fechaF}',[ReporteController::class,'nuestrosProductosMas']);
+Route::get('/nuestrosproductosmenos/{fechaI}/{fechaF}',[ReporteController::class,'nuestrosProductosMenos']);
+
+//rutas para reportes de compras
+Route::get('/inventarios/reportes',[ReporteController::class,'indexinventarios']);
+Route::get('/inventarios',[ReporteController::class,'inventarios']);
+Route::get('/inventariosmenor/{limite}',[ReporteController::class,'inventariosMenor']);
+Route::get('/inventariosmayor/{limite}',[ReporteController::class,'inventariosMayor']);
 
 

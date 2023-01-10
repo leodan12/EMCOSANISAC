@@ -261,6 +261,15 @@
 											<span class="menu-title">Ventas</span>
 										</a>
 									</div>
+									
+									<div class="menu-item">
+										<a class="menu-link" href="{{url('compras/reportes')}}">
+											<span class="menu-bullet">
+												<span class="bullet bullet-dot"></span>
+											</span>
+											<span class="menu-title">Compras</span>
+										</a>
+									</div>
 									<div class="menu-item">
 										<a class="menu-link" href="{{url('inventarios/reportes')}}">
 											<span class="menu-bullet">
@@ -270,11 +279,11 @@
 										</a>
 									</div>
 									<div class="menu-item">
-										<a class="menu-link" href="{{url('compras/reportes')}}">
+										<a class="menu-link" href="{{url('productos/reportes')}}">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
-											<span class="menu-title">Compras</span>
+											<span class="menu-title">Productos</span>
 										</a>
 									</div>
 
