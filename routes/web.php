@@ -154,7 +154,7 @@ Route::get('/venta/{id}/delete', [VentaController::class, 'destroy']);//Actualiz
 
 Route::get('/deletedetalleventa/{id}', [VentaController::class, 'destroydetalleventa']); //eliminar detalle compra
 
- 
+// rutas para generar el pdf de la boleta 
 Route::get('/pdf/generar',[PdfController::class,'createPDF']);
 Route::get('/generarboletaventa/{id}',[PdfController::class,'boletaventa']);
 

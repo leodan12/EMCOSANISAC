@@ -228,7 +228,7 @@
         'packages': ['corechart']
     });
     globalThis.midata = [];
-    midata.push(["Fecha", "Ventas"]);
+    midata.push(["Fecha", "Compras"]);
 
     traerDatos();
 
