@@ -177,11 +177,15 @@ Route::get('/productos/reportes',[ReporteController::class,'indexproductos']);
 Route::get('/productos',[ReporteController::class,'productos']);
 Route::get('/nuestrosproductosmas/{fechaI}/{fechaF}',[ReporteController::class,'nuestrosProductosMas']);
 Route::get('/nuestrosproductosmenos/{fechaI}/{fechaF}',[ReporteController::class,'nuestrosProductosMenos']);
+Route::get('/productosenfecha/{fechaI}/{fechaF}',[ReporteController::class,'productosenFecha']);
+Route::get('/productosenfecha2/{fechaI}/{fechaF}',[ReporteController::class,'productosenFecha2']);
 
 //rutas para reportes de compras
 Route::get('/inventarios/reportes',[ReporteController::class,'indexinventarios']);
 Route::get('/inventarios',[ReporteController::class,'inventarios']);
 Route::get('/inventariosmenor/{limite}',[ReporteController::class,'inventariosMenor']);
 Route::get('/inventariosmayor/{limite}',[ReporteController::class,'inventariosMayor']);
+Route::get('/inventarioslimite/{limite}',[ReporteController::class,'inventariosLimite']);
+Route::get('/inventarioslimite2/{limite}',[ReporteController::class,'inventariosLimite2']);
 
 
