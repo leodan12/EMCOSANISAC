@@ -37,7 +37,9 @@ class LoginController extends Controller
         }
  
         if (Auth::attempt($request->only('email', 'password'))) {
+            //$user = User::where('email','=',$validatedData['email'])->first();
             return response()->json([
+                //'id'=> $user->id,
                 'token' => $request->user()->createToken('auth_token')->plainTextToken,
                 'message' => 'Success'
             ], 200);
@@ -85,9 +87,10 @@ class LoginController extends Controller
 
             //se crea token de acceso personal para el usuario
             $token = $user->createToken('auth_token')->plainTextToken;
-
+           // $id=$user->id;
             //se devuelve una respuesta JSON con el token generado y el tipo de token
             return response()->json([
+                //'id'=>$id,
                 'token' => $token,
                 'message' => 'Success'
             ], 200);
@@ -96,5 +99,10 @@ class LoginController extends Controller
                 'message' => 'Correo Duplicado'
             ], 409);
         }
+    }
+
+    public function logout(){
+        //$request->user()->currentAccessToken()->delete();
+       // $user->tokens()->where('id', $tokenId)->delete();
     }
 }
