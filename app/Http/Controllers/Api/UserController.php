@@ -37,6 +37,27 @@ class UserController extends Controller
         ], 200);
 
     }
+     public function datosuser2( )
+    {
+        $user = Auth::user();
+        //$searchUser = User::where('id', $user->id)->first();
+       // return $searchUser;
+
+
+        $searchUser  = DB::table('users as u') 
+        ->select('u.id','u.name' , 'u.email' )
+        ->where('u.id','=', 1)
+        ->first(); 
+        //->get();
+
+        //return $searchUser;
+
+        return response()->json([
+            'user' => $searchUser,
+            'message' => 'Success'
+        ], 200);
+
+    }
 
 
 
