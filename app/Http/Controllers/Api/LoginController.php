@@ -40,6 +40,8 @@ class LoginController extends Controller
             $user = User::where('email','=',$validatedData['email'])->first();
             return response()->json([
                 'id'=> $user->id,
+                'name'=> $user->name,
+                'email'=> $user->email,
                 'token' => $request->user()->createToken('auth_token')->plainTextToken,
                 'message' => 'Success'
             ], 200);
