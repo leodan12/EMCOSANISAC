@@ -37,7 +37,7 @@ class UserController extends Controller
         ], 200);
 
     }
-     public function datosuser2( )
+     public function datosuser2($id)
     {
         $user = Auth::user();
         //$searchUser = User::where('id', $user->id)->first();
@@ -46,7 +46,7 @@ class UserController extends Controller
 
         $searchUser  = DB::table('users as u') 
         ->select('u.id','u.name' , 'u.email' )
-        ->where('u.id','=', 1)
+        ->where('u.id','=', $id)
         ->first(); 
         //->get();
 
