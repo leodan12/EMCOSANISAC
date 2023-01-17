@@ -106,8 +106,7 @@ class ReporteController extends Controller
         ->distinct('p.producto')
         ->get();
 
-        return $        $productos = DB::table('ventas as v')
-        ;
+        return   $productos  ;
     }
 
 

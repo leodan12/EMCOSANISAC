@@ -288,6 +288,7 @@
         globalThis.tablelistado = defineTable($('#listado'), [], [0, 1, 2, 3, 4, 5,6,7], 'Ventas', function() {}, true, true, false);
 
 
+
     });
 
     var contd = 0;
@@ -312,22 +313,22 @@
     function llenarCombo(){
         var fechaI = document.getElementById('fechainicial').value;
         var fechaF = document.getElementById('fechafinal').value;
-
+      
         $.get('/llenarcomboventas/' + fechaI+'/'+fechaF, function(data) {
               
               var marca_select = '<option value="" disabled selected>Seleccione un turno</option>'
               for (var i = 0; i < data.length; i++)
                 marca_select += '<option value="' + data[i].marca + '">' + data[i].marca + '</option>';
-              $("#selectemarca").html(marca_select);
-              $('#selectemarca').prop('disabled', false);
+              $("#selectmarca").html(marca_select);
+              $('#selectmarca').prop('disabled', false);
           });
 
           $.get('/llenarcomboproductos/' + fechaI+'/'+fechaF, function(data) {
               
-              var marca_select = '<option value="" disabled selected>Seleccione un turno</option>'
+              var producto_select = '<option value="" disabled selected>Seleccione un Producto</option>'
               for (var i = 0; i < data.length; i++)
-                marca_select += '<option value="' + data[i].marca + '">' + data[i].marca + '</option>';
-              $("#selectproducto").html(marca_select);
+              producto_select += '<option value="' + data[i].producto + '">' + data[i].producto + '</option>';
+              $("#selectproducto").html(producto_select);
               $('#selectproducto').prop('disabled', false);
           });
     }

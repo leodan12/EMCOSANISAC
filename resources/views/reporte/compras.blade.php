@@ -305,7 +305,7 @@
 
     traerDatos();
     llenarTabla();
-    llenarcombo();
+    llenarCombo();
     });
 
     function llenarCombo(){
@@ -323,7 +323,7 @@
 
           $.get('/llenarcomboproductoscompras/' + fechaI+'/'+fechaF, function(data) {
               
-              var marca_select = '<option value="" disabled selected>Seleccione un turno</option>'
+              var marca_select = '<option value="" disabled selected>Seleccione un Producto</option>'
               for (var i = 0; i < data.length; i++)
                 marca_select += '<option value="' + data[i].marca + '">' + data[i].marca + '</option>';
               $("#selectproducto").html(marca_select);
