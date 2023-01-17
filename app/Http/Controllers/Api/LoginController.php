@@ -37,9 +37,11 @@ class LoginController extends Controller
         }
  
         if (Auth::attempt($request->only('email', 'password'))) {
-            //$user = User::where('email','=',$validatedData['email'])->first();
+            $user = User::where('email','=',$validatedData['email'])->first();
             return response()->json([
-                //'id'=> $user->id,
+                'id'=> $user->id,
+                'name'=> $user->name,
+                'email'=> $user->email,
                 'token' => $request->user()->createToken('auth_token')->plainTextToken,
                 'message' => 'Success'
             ], 200);
@@ -87,10 +89,12 @@ class LoginController extends Controller
 
             //se crea token de acceso personal para el usuario
             $token = $user->createToken('auth_token')->plainTextToken;
-           // $id=$user->id;
+            //$id=$user->id;
             //se devuelve una respuesta JSON con el token generado y el tipo de token
             return response()->json([
-                //'id'=>$id,
+                'id'=> $user->id,
+                'name'=> $user->name,
+                'email'=> $user->email,
                 'token' => $token,
                 'message' => 'Success'
             ], 200);

@@ -38,5 +38,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 //rutas para las ventas 
 Route::get('/listaventascliente/{token}', [VentaController::class, 'listaventas']);
 Route::get('/datosuser', [UserController::class, 'datosuser']);//->middleware('auth:sanctum');
-
+Route::get('/datosuser2/{id}', [UserController::class, 'datosuser2']);
 
