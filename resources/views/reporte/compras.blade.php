@@ -184,6 +184,22 @@
 <div class="table-responsive">
             <div class="d-flex flex-stack">
                 <div class="d-flex btn-excel-datatable"></div>
+                <div class="d-flex justify-content-start"> 
+                <select class="form-select" aria-label="Default select example" name="selectmarca" id="selectmarca">
+                    <option selected disabled>Filtrar por Marca</option>
+                    @foreach($marcas as $item)
+                    <option  value="{{$item->marca}}">{{$item->marca}}</option>
+                    @endforeach
+        </select>
+      </div>
+      <div class="d-flex justify-content-start"> 
+                <select class="form-select" aria-label="Default select example" name="selectproducto" id="selectproducto">
+                    <option selected disabled>Filtrar por Producto</option>
+                    @foreach($productos as $item)
+                    <option  value="{{$item->producto}}">{{$item->producto}}</option>
+                    @endforeach
+        </select>
+      </div>
                 <div class="d-flex justify-content-end">
                     <div class="d-flex align-items-center position-relative my-1">
                         <span class="svg-icon svg-icon-1 position-absolute ms-6">
@@ -289,8 +305,31 @@
 
     traerDatos();
     llenarTabla();
-
+    llenarcombo();
     });
+
+    function llenarCombo(){
+        var fechaI = document.getElementById('fechainicial').value;
+        var fechaF = document.getElementById('fechafinal').value;
+
+        $.get('/llenarcombocompras/' + fechaI+'/'+fechaF, function(data) {
+              
+              var marca_select = '<option value="" disabled selected>Seleccione un turno</option>'
+              for (var i = 0; i < data.length; i++)
+                marca_select += '<option value="' + data[i].marca + '">' + data[i].marca + '</option>';
+              $("#selectemarca").html(marca_select);
+              $('#selectemarca').prop('disabled', false);
+          });
+
+          $.get('/llenarcomboproductoscompras/' + fechaI+'/'+fechaF, function(data) {
+              
+              var marca_select = '<option value="" disabled selected>Seleccione un turno</option>'
+              for (var i = 0; i < data.length; i++)
+                marca_select += '<option value="' + data[i].marca + '">' + data[i].marca + '</option>';
+              $("#selectproducto").html(marca_select);
+              $('#selectproducto').prop('disabled', false);
+          });
+    }
   
     function llenarTabla(){
         var fechaI = document.getElementById('fechainicial').value;
@@ -372,6 +411,14 @@
         $('#buscador').keyup(function(e) {
             tablelistado.search(e.target.value).draw();
         });
+
+        $("select[name=selectmarca]").change(function(e){
+            tablelistado.search(e.target.value).draw();
+        });
+        $("select[name=selectproducto]").change(function(e){
+            tablelistado.search(e.target.value).draw();
+        });
+
 
         listarOnTable(tablelistado, data, 0, [], true, true, true, urlVentas, false, []);
     }

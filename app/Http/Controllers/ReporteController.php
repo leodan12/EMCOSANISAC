@@ -33,9 +33,32 @@ class ReporteController extends Controller
             ->whereBetween('v.fecha', [$fecha_mes_anterior, $fecha_actual])
             ->orderBy('v.fecha')
             ->where('v.estado', '=', '1')->get();
-
-        //return $ventastabla;
-        return view('reporte.ventas', ['ventas' => $ventas, 'ventastabla' => $ventastabla]);
+            
+        $marcas = DB::table('ventas as v')
+            ->join('detalleventas as dv', 'dv.venta_id', '=', 'v.id')
+            ->join('inventarios as i', 'dv.inventario_id', '=', 'i.id')
+            ->join('productos as p', 'i.producto_id', '=', 'p.id')
+            ->join('categorias as c', 'p.categoria_id', '=', 'c.id')
+            ->select('p.marca')
+            ->whereBetween('v.fecha', [$fecha_mes_anterior, $fecha_actual])
+            ->orderBy('v.fecha', 'asc')
+            ->where('v.estado', '=', '1')
+            ->distinct('p.marca')
+            ->get();
+ 
+        $productos = DB::table('ventas as v')
+            ->join('detalleventas as dv', 'dv.venta_id', '=', 'v.id')
+            ->join('inventarios as i', 'dv.inventario_id', '=', 'i.id')
+            ->join('productos as p', 'i.producto_id', '=', 'p.id')
+            ->join('categorias as c', 'p.categoria_id', '=', 'c.id')
+            ->select('p.producto')
+            ->whereBetween('v.fecha', [$fecha_mes_anterior, $fecha_actual])
+            ->orderBy('v.fecha', 'asc')
+            ->where('v.estado', '=', '1')
+            ->distinct('p.producto')
+            ->get();
+  
+        return view('reporte.ventas', ['productos' => $productos,'marcas' => $marcas,'ventas' => $ventas, 'ventastabla' => $ventastabla]);
     }
 
     public function ventasenFecha($fechaI, $fechaF)
@@ -51,6 +74,40 @@ class ReporteController extends Controller
             ->where('v.estado', '=', '1')->get();
 
         return $ventas;
+    }
+    
+    public function ventasMarca($fechaI, $fechaF)
+    {
+        $ventas = DB::table('ventas as v')
+            ->join('detalleventas as dv', 'dv.venta_id', '=', 'v.id')
+            ->join('inventarios as i', 'dv.inventario_id', '=', 'i.id')
+            ->join('productos as p', 'i.producto_id', '=', 'p.id')
+            ->join('categorias as c', 'p.categoria_id', '=', 'c.id')
+            ->select('p.marca')
+            ->whereBetween('v.fecha', [$fechaI, $fechaF])
+            ->orderBy('v.fecha', 'asc')
+            ->where('v.estado', '=', '1')
+            ->distinct('p.marca')
+            ->get();
+
+        return $ventas;
+    }
+    public function ventasProducto($fechaI, $fechaF)
+    {
+        $productos = DB::table('ventas as v')
+        ->join('detalleventas as dv', 'dv.venta_id', '=', 'v.id')
+        ->join('inventarios as i', 'dv.inventario_id', '=', 'i.id')
+        ->join('productos as p', 'i.producto_id', '=', 'p.id')
+        ->join('categorias as c', 'p.categoria_id', '=', 'c.id')
+        ->select('p.producto')
+        ->whereBetween('v.fecha', [$fechaI, $fechaF])
+        ->orderBy('v.fecha', 'asc')
+        ->where('v.estado', '=', '1')
+        ->distinct('p.producto')
+        ->get();
+
+        return $        $productos = DB::table('ventas as v')
+        ;
     }
 
 
@@ -148,7 +205,30 @@ class ReporteController extends Controller
             ->orderBy('c.fecha', 'asc')
             ->where('c.estado', '=', '1')->get();
 
-        return view('reporte.compras', ['compras' => $compras, 'comprastabla' => $comprastabla]);
+        $marcas = DB::table('compras as c')
+            ->join('detalecompras as dc', 'dc.compra_id', '=', 'c.id')
+            ->join('inventarios as i', 'dc.inventario_id', '=', 'i.id')
+            ->join('productos as p', 'i.producto_id', '=', 'p.id')
+            ->join('categorias as cat', 'p.categoria_id', '=', 'cat.id')
+            ->select('p.marca')
+            ->whereBetween('c.fecha', [$fecha_mes_anterior, $fecha_actual])
+            ->orderBy('c.fecha', 'asc')
+            ->where('c.estado', '=', '1')
+            ->distinct('p.marca')
+            ->get();
+        $productos = DB::table('compras as c')
+            ->join('detalecompras as dc', 'dc.compra_id', '=', 'c.id')
+            ->join('inventarios as i', 'dc.inventario_id', '=', 'i.id')
+            ->join('productos as p', 'i.producto_id', '=', 'p.id')
+            ->join('categorias as cat', 'p.categoria_id', '=', 'cat.id')
+            ->select('p.producto')
+            ->whereBetween('c.fecha', [$fecha_mes_anterior, $fecha_actual])
+            ->orderBy('c.fecha', 'asc')
+            ->where('c.estado', '=', '1')
+            ->distinct('p.producto')
+            ->get();
+ 
+        return view('reporte.compras', ['productos' => $productos, 'marcas' => $marcas,'compras' => $compras, 'comprastabla' => $comprastabla]);
     }
 
     public function comprasenFecha($fechaI, $fechaF)
@@ -164,6 +244,36 @@ class ReporteController extends Controller
             ->where('c.estado', '=', '1')->get();
 
         return $compras;
+    }
+    public function comprasMarca($fechaI, $fechaF)
+    {
+        $marcas = DB::table('compras as c')
+        ->join('detalecompras as dc', 'dc.compra_id', '=', 'c.id')
+        ->join('inventarios as i', 'dc.inventario_id', '=', 'i.id')
+        ->join('productos as p', 'i.producto_id', '=', 'p.id')
+        ->join('categorias as cat', 'p.categoria_id', '=', 'cat.id')
+        ->select('p.marca')
+        ->whereBetween('c.fecha', [$fechaI, $fechaF])
+        ->orderBy('c.fecha', 'asc')
+        ->where('c.estado', '=', '1')
+        ->distinct('p.marca')
+        ->get();
+        return $marcas;
+    }
+    public function comprasProductos($fechaI, $fechaF)
+    {
+        $productos = DB::table('compras as c')
+        ->join('detalecompras as dc', 'dc.compra_id', '=', 'c.id')
+        ->join('inventarios as i', 'dc.inventario_id', '=', 'i.id')
+        ->join('productos as p', 'i.producto_id', '=', 'p.id')
+        ->join('categorias as cat', 'p.categoria_id', '=', 'cat.id')
+        ->select('p.producto')
+        ->whereBetween('c.fecha', [$fechaI, $fechaF])
+        ->orderBy('c.fecha', 'asc')
+        ->where('c.estado', '=', '1')
+        ->distinct('p.producto')
+        ->get();
+        return $productos;
     }
 
     public function nuestrasCompras($fechaI, $fechaF)

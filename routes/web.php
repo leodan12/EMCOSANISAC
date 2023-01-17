@@ -164,13 +164,16 @@ Route::get('/ventas/reportes',[ReporteController::class,'indexventas']);
 Route::get('/ingresos',[ReporteController::class,'ingresos']);
 Route::get('/nuestrasventas/{fechaI}/{fechaF}',[ReporteController::class,'nuestrasVentas']);
 Route::get('/ventasenfecha/{fechaI}/{fechaF}',[ReporteController::class,'ventasenFecha']);
-
+Route::get('/llenarcomboventas/{fechaI}/{fechaF}',[ReporteController::class,'ventasMarca']);
+Route::get('/llenarcomboproductos/{fechaI}/{fechaF}',[ReporteController::class,'ventasProducto']);
 
 //rutas para reportes de compras
 Route::get('/compras/reportes',[ReporteController::class,'indexcompras']);
 Route::get('/egresos',[ReporteController::class,'egresos']);
 Route::get('/nuestrascompras/{fechaI}/{fechaF}',[ReporteController::class,'nuestrasCompras']);
 Route::get('/comprasenfecha/{fechaI}/{fechaF}',[ReporteController::class,'comprasenFecha']);
+Route::get('/llenarcombocompras/{fechaI}/{fechaF}',[ReporteController::class,'comprasMarca']);
+Route::get('/llenarcomboproductoscompras/{fechaI}/{fechaF}',[ReporteController::class,'comprasProductos']);
 
 //rutas para reportes de compras
 Route::get('/productos/reportes',[ReporteController::class,'indexproductos']);
